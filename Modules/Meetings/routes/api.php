@@ -15,20 +15,20 @@ Route::middleware(['throttle:120,1,meetings-guest'])->prefix('v1/meetings/guest'
     Route::patch('{guestSession}/media', [GuestMeetingController::class, 'media']);
     Route::post('{guestSession}/leave', [GuestMeetingController::class, 'leave']);
     Route::post('{guestSession}/lock', [GuestMeetingController::class, 'lock']);
-    Route::post('{guestSession}/screen-share/start', [GuestMeetingController::class, 'startScreenShare']);
+    Route::post('{guestSession}/screen-share/start', [GuestMeetingController::class, 'startScreenShare'])->middleware('feature:screen_share');
     Route::post('{guestSession}/screen-share/stop', [GuestMeetingController::class, 'stopScreenShare']);
     Route::post('{guestSession}/offer', [GuestMeetingController::class, 'offer']);
     Route::post('{guestSession}/answer', [GuestMeetingController::class, 'answer']);
     Route::post('{guestSession}/ice', [GuestMeetingController::class, 'ice']);
     Route::get('{guestSession}/signals', [GuestMeetingController::class, 'poll']);
     Route::get('{guestSession}/events', [MeetingExtrasController::class, 'guestEvents']);
-    Route::post('{guestSession}/captions', [MeetingExtrasController::class, 'guestCaption']);
+    Route::post('{guestSession}/captions', [MeetingExtrasController::class, 'guestCaption'])->middleware('feature:captions');
 });
 
 // FR-316 - the initial guest join request itself is also unauthenticated
 // (a guest has no Sanctum session yet at this point either).
 Route::middleware(['throttle:60,1,meetings-guest-join'])->prefix('v1/meetings')->group(function () {
-    Route::post('{meeting}/guest', [MeetingController::class, 'guestJoin']);
+    Route::post('{meeting}/guest', [MeetingController::class, 'guestJoin'])->middleware('feature:guest_mode');
 });
 
 Route::middleware(['auth:sanctum', 'throttle:600,1,meetings'])->prefix('v1/meetings')->group(function () {
@@ -60,7 +60,7 @@ Route::middleware(['auth:sanctum', 'throttle:600,1,meetings'])->prefix('v1/meeti
     Route::post('{meeting}/participants/{participant}/revoke-co-host', [MeetingController::class, 'revokeCoHost']);
     Route::post('{meeting}/participants/{participant}/transfer-host', [MeetingController::class, 'transferHost']);
 
-    Route::post('{meeting}/screen-share/start', [MeetingController::class, 'startScreenShare']);
+    Route::post('{meeting}/screen-share/start', [MeetingController::class, 'startScreenShare'])->middleware('feature:screen_share');
     Route::post('{meeting}/screen-share/stop', [MeetingController::class, 'stopScreenShare']);
 
     Route::post('{meeting}/offer', [MeetingSignalingController::class, 'offer']);
@@ -70,15 +70,15 @@ Route::middleware(['auth:sanctum', 'throttle:600,1,meetings'])->prefix('v1/meeti
 
     // captions, recording, breakout rooms, summary (owner 2026-11-06)
     Route::get('{meeting}/events', [MeetingExtrasController::class, 'events']);
-    Route::post('{meeting}/captions', [MeetingExtrasController::class, 'caption']);
-    Route::post('{meeting}/recording', [MeetingExtrasController::class, 'recording']);
-    Route::post('{meeting}/recordings', [MeetingExtrasController::class, 'upload']);
+    Route::post('{meeting}/captions', [MeetingExtrasController::class, 'caption'])->middleware('feature:captions');
+    Route::post('{meeting}/recording', [MeetingExtrasController::class, 'recording'])->middleware('feature:recording');
+    Route::post('{meeting}/recordings', [MeetingExtrasController::class, 'upload'])->middleware('feature:recording');
     Route::get('{meeting}/recordings', [MeetingExtrasController::class, 'recordings']);
     Route::get('{meeting}/recordings/{recording}', [MeetingExtrasController::class, 'download'])->name('meetings.recordings.download');
-    Route::post('{meeting}/breakouts', [MeetingExtrasController::class, 'openBreakouts']);
+    Route::post('{meeting}/breakouts', [MeetingExtrasController::class, 'openBreakouts'])->middleware('feature:breakouts');
     Route::post('{meeting}/breakouts/close', [MeetingExtrasController::class, 'closeBreakouts']);
     Route::get('{meeting}/summary', [MeetingExtrasController::class, 'summary']);
-    Route::post('{meeting}/summary', [MeetingExtrasController::class, 'makeSummary']);
+    Route::post('{meeting}/summary', [MeetingExtrasController::class, 'makeSummary'])->middleware('feature:ai_features');
 });
 
 Route::middleware(['auth:sanctum', 'throttle:120,1,calendar'])->prefix('v1/calendar')->group(function () {

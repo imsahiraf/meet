@@ -1,6 +1,11 @@
 <x-layouts.app title="Audit logs - Meet">
     @include('admin::partials.nav')
 
+    <div class="mb-3 flex flex-wrap items-center justify-between gap-2">
+        <p class="text-sm text-gray-500">Every admin change, with person, time and address.</p>
+        <a href="/api/v1/admin/logs/audit.csv" class="rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm font-semibold text-gray-700 shadow-sm hover:bg-gray-50">Download CSV</a>
+    </div>
+
     <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
         <div class="overflow-x-auto">
             <table class="w-full min-w-[640px] text-sm">

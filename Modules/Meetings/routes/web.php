@@ -9,7 +9,7 @@ Route::get('j/{code}', [MeetingWebController::class, 'guestLanding'])->name('mee
 // Guest-created meetings (no login, Google-Meet style) - registered
 // BEFORE the {guestSession:session_token} wildcard below, since "new"
 // would otherwise be swallowed by that route's implicit model binding.
-Route::middleware(['throttle:20,1,meetings-guest-create'])->group(function () {
+Route::middleware(['throttle:20,1,meetings-guest-create', 'feature:guest_mode'])->group(function () {
     Route::get('meetings/guest/new', [MeetingWebController::class, 'guestCreateForm'])->name('meetings.guest-create-form');
     Route::post('meetings/guest/new', [MeetingWebController::class, 'guestCreate'])->name('meetings.guest-create');
 });

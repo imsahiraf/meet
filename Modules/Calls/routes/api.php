@@ -11,8 +11,8 @@ Route::middleware(['auth:sanctum', 'throttle:600,1,calls'])->prefix('v1/calls')-
     Route::get('history', [CallController::class, 'history']);
 
     // RAS-4 API1-2
-    Route::post('voice/start', [CallController::class, 'startVoice']);
-    Route::post('video/start', [CallController::class, 'startVideo']);
+    Route::post('voice/start', [CallController::class, 'startVoice'])->middleware('feature:voice_calls');
+    Route::post('video/start', [CallController::class, 'startVideo'])->middleware('feature:video_calls');
 
     Route::get('{call}', [CallController::class, 'show']);
 

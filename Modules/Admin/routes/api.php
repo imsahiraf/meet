@@ -48,6 +48,7 @@ Route::middleware(['auth:sanctum', 'admin', 'throttle:300,1,admin'])->prefix('v1
     Route::post('system/maintenance', [AdminSettingsController::class, 'setMaintenanceMode']);
 
     Route::get('logs/audit', [AdminLogController::class, 'audit']);
+    Route::get('logs/audit.csv', [AdminLogController::class, 'auditCsv'])->middleware('throttle:10,1');
     Route::get('logs/audit/{auditLog}', [AdminLogController::class, 'show']);
     Route::get('logs/activity', [AdminLogController::class, 'activity']);
 

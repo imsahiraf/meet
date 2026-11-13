@@ -64,7 +64,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // tested API controllers instead of duplicating them for the web.
         $middleware->statefulApi();
 
-        $middleware->alias(['admin' => EnsureUserIsAdmin::class]);
+        $middleware->alias(['admin' => EnsureUserIsAdmin::class, 'feature' => \App\Http\Middleware\EnsureFeatureEnabled::class]);
 
         $middleware->append(SecurityHeaders::class);
 

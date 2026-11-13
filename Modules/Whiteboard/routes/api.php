@@ -5,7 +5,7 @@ use Modules\Whiteboard\Http\Controllers\GuestWhiteboardController;
 use Modules\Whiteboard\Http\Controllers\WhiteboardController;
 
 Route::middleware(['auth:sanctum', 'throttle:600,1,whiteboard'])->prefix('v1')->group(function () {
-    Route::post('meetings/{meeting}/whiteboard', [WhiteboardController::class, 'open']);
+    Route::post('meetings/{meeting}/whiteboard', [WhiteboardController::class, 'open'])->middleware('feature:whiteboard');
 
     Route::prefix('whiteboards/{whiteboard}')->group(function () {
         Route::get('/', [WhiteboardController::class, 'show']);
