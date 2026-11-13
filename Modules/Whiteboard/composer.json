@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/whiteboard",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Whiteboard\\": "",
+            "Modules\\Whiteboard\\Database\\Factories\\": "database/factories/",
+            "Modules\\Whiteboard\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Whiteboard\\Tests\\": "tests/"
+        }
+    }
+}

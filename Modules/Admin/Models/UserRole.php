@@ -1,0 +1,41 @@
+<?php
+
+namespace Modules\Admin\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Modules\Authentication\Models\User;
+
+class UserRole extends Model
+{
+    public $timestamps = false;
+
+    protected $fillable = [
+        'user_id',
+        'role_id',
+        'assigned_by',
+        'assigned_at',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'assigned_at' => 'datetime',
+        ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function role(): BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function assignedBy(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_by');
+    }
+}

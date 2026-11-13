@@ -1,0 +1,9 @@
+{
+    "name": "example/mailbox",
+    "description": "Meet Mail",
+    "autoload": {
+        "psr-4": {
+            "Modules\\Mailbox\\": ""
+        }
+    }
+}

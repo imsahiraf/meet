@@ -1,0 +1,14 @@
+{
+    "Authentication": true,
+    "Core": true,
+    "User": true,
+    "Admin": true,
+    "Contacts": true,
+    "Chat": true,
+    "Groups": true,
+    "Media": true,
+    "Calls": true,
+    "Meetings": true,
+    "Whiteboard": true,
+    "Mailbox": true
+}

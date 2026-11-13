@@ -1,0 +1,7 @@
+# Meet Android app: the in-app updater reads latest.json (never cached) and downloads the APK
+AddType application/vnd.android.package-archive .apk
+<IfModule mod_headers.c>
+    <FilesMatch "\.json$">
+        Header set Cache-Control "no-store"
+    </FilesMatch>
+</IfModule>

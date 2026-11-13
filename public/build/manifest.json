@@ -1,0 +1,35 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-BQw_jAlX.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-1LshJ7FX.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true
+  },
+  "resources/js/e2e-crypto.js": {
+    "file": "assets/e2e-crypto-C7t-bM78.js",
+    "name": "e2e-crypto",
+    "src": "resources/js/e2e-crypto.js",
+    "isEntry": true
+  },
+  "resources/js/offline.js": {
+    "file": "assets/offline-CeLXKNWN.js",
+    "name": "offline",
+    "src": "resources/js/offline.js",
+    "isEntry": true
+  },
+  "resources/js/push-notifications.js": {
+    "file": "assets/push-notifications-DtayEdHB.js",
+    "name": "push-notifications",
+    "src": "resources/js/push-notifications.js",
+    "isEntry": true
+  }
+}

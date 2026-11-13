@@ -1,0 +1,9 @@
+{
+    "versionCode": 10200,
+    "versionName": "1.2.0",
+    "apk": "/app/android/meet-meet.apk",
+    "sha256": "455baa58dc3901a3f4358f426f0cc10a949d2c8c939af831c8ccee21f7edd268",
+    "notes": "Nearby chat: send messages to phones nearby over Bluetooth / Wi-Fi when there is no internet (from the No internet page).",
+    "minVersionCode": 0,
+    "size": 579909
+}
