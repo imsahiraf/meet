@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-@php $accent = array_key_exists((string) request('accent'), \Modules\User\Models\UserPreference::ACCENTS) ? request('accent') : (auth()->user()->preferences?->accent ?: 'indigo'); @endphp
+@php [$accent, $accentHex] = \Modules\User\Support\Look::resolve(auth()->user()); @endphp
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full" data-accent="{{ $accent }}">
 <head>
     <meta charset="utf-8">
+    @if ($accentHex)<style>{!! \Modules\User\Support\Look::css($accentHex) !!}</style>@endif
     {{-- signed-in pages are private: never in search engines --}}
     <meta name="robots" content="noindex, nofollow">
     {{-- maximum-scale=1/user-scalable=no kills native pinch/double-tap

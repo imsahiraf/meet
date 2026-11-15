@@ -12,7 +12,7 @@ class BrandingSetting extends Model
     protected $fillable = [
         'app_name', 'company_name', 'logo_path', 'favicon_path',
         'theme_color', 'login_background_path', 'footer_text',
-        'pwa_short_name', 'pwa_background_color', 'pwa_display_mode',
+        'pwa_short_name', 'pwa_background_color', 'pwa_display_mode', 'default_accent',
     ];
 
     public static function current(): self

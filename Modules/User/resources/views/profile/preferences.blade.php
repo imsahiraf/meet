@@ -33,6 +33,11 @@
                             <span class="break-words">{{ $label }}</span>
                         </label>
                     @endforeach
+                    <label class="flex cursor-pointer flex-col gap-2 rounded-xl border-2 p-2 text-sm has-[:checked]:border-brand-600 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand-500 border-gray-200">
+                        <input type="radio" name="accent" value="custom" class="sr-only" @checked($mine === 'custom')>
+                        <span class="flex h-14 items-center justify-center rounded-lg border border-dashed border-gray-300"><input type="color" name="custom_color" value="{{ old('custom_color', $user->preferences?->custom_color ?: '#4f46e5') }}" aria-label="Your own colour" class="h-10 w-14 cursor-pointer rounded border-0 bg-transparent" data-own></span>
+                        <span class="break-words">Your own colour</span>
+                    </label>
                 </div>
                 <div class="mt-3 flex flex-wrap items-center gap-2">
                     <span class="text-sm text-gray-600">Preview:</span>
@@ -90,8 +95,10 @@
         var box = document.querySelector('[data-accents]'); if (!box) return;
         var frame = box.querySelector('[data-frame]'), over = document.querySelector('[data-overlay]'), desk = over.querySelector('[data-frame-desk]');
         var base = @json(route('dashboard')) + '?accent=';
-        var pick = function () { return (box.querySelector('input[name=accent]:checked') || {}).value || 'indigo'; };
-        box.addEventListener('change', function () { var a = pick(); document.documentElement.dataset.accent = a; frame.src = base + a; });
+        var own = box.querySelector('[data-own]');
+        var pick = function () { var a = (box.querySelector('input[name=accent]:checked') || {}).value || 'indigo'; return a === 'custom' ? 'custom&color=' + encodeURIComponent(own.value) : a; };
+        own.addEventListener('input', function () { box.querySelector('input[value=custom]').checked = true; frame.src = base + pick(); });
+        box.addEventListener('change', function () { var a = pick(); if (a.indexOf('custom') !== 0) document.documentElement.dataset.accent = a; frame.src = base + a; });
         box.querySelector('[data-preview=desktop]').addEventListener('click', function () { desk.src = base + pick(); over.hidden = false; over.querySelector('[data-close]').focus(); });
         var close = function () { over.hidden = true; desk.src = 'about:blank'; };
         over.querySelector('[data-close]').addEventListener('click', close);

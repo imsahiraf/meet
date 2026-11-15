@@ -63,6 +63,7 @@ class AdminSettingsController extends Controller
             'app_name' => ['sometimes', 'string', 'max:100'],
             'company_name' => ['sometimes', 'nullable', 'string', 'max:100'],
             'theme_color' => ['sometimes', 'string', 'max:16'],
+            'default_accent' => ['sometimes', 'nullable', 'in:brand,' . implode(',', array_keys(\Modules\User\Models\UserPreference::ACCENTS))],
             'footer_text' => ['sometimes', 'nullable', 'string', 'max:500'],
         ]);
 

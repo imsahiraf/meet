@@ -27,6 +27,7 @@ class UserPreference extends Model
         'timezone',
         'theme',
         'accent',
+        'custom_color',
         'notification_sound',
         'auto_download_photos',
         'auto_download_videos',

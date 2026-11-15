@@ -2,7 +2,7 @@
 
 Chat, voice and video calls and meetings (captions, recording, breakout rooms, notes) for a small team, self-hosted, plus a mail hub
 that brings your existing mail accounts (Gmail, Outlook or any IMAP / SMTP account) into the same app - read, reply and send through
-them. A side project I build in my free time. Version 1.8.0.
+them. A side project I build in my free time. Version 1.9.0.
 
 ## Run it
 

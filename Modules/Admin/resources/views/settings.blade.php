@@ -19,6 +19,8 @@
             <label class="block text-sm font-medium text-gray-700">App name<input type="text" id="branding-app-name" class="mt-1 w-full rounded-lg border-gray-300 shadow-sm sm:text-sm"></label>
             <label class="block text-sm font-medium text-gray-700">Company name<input type="text" id="branding-company-name" class="mt-1 w-full rounded-lg border-gray-300 shadow-sm sm:text-sm"></label>
             <label class="block text-sm font-medium text-gray-700">Theme color<input type="color" id="branding-theme-color" class="mt-1 h-9 w-16"></label>
+            <label class="block text-sm font-medium text-gray-700">Colour theme for everybody (until a person picks their own in Preferences)
+                <select id="branding-default-accent" class="mt-1 w-full rounded-lg border-gray-300 shadow-sm sm:text-sm"><option value="">Indigo (default)</option><option value="brand">Our theme colour (above)</option>@foreach (\Modules\User\Models\UserPreference::ACCENTS as $k => [$l]) <option value="{{ $k }}">{{ $l }}</option>@endforeach</select></label>
             <label class="block text-sm font-medium text-gray-700">Footer text<textarea id="branding-footer" rows="2" class="mt-1 w-full rounded-lg border-gray-300 shadow-sm sm:text-sm"></textarea></label>
             <button type="button" id="save-branding" class="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-700">Save branding</button>
         </div>
@@ -110,6 +112,7 @@
                     document.getElementById('branding-company-name').value = data.company_name || '';
                     document.getElementById('branding-theme-color').value = data.theme_color || '#4f46e5';
                     document.getElementById('branding-footer').value = data.footer_text || '';
+                    document.getElementById('branding-default-accent').value = data.default_accent || '';
                 });
             }
 
@@ -119,6 +122,7 @@
                     company_name: document.getElementById('branding-company-name').value,
                     theme_color: document.getElementById('branding-theme-color').value,
                     footer_text: document.getElementById('branding-footer').value,
+                    default_accent: document.getElementById('branding-default-accent').value || null,
                 }).then(async function () { await MeetDialog.alert('Branding saved.'); }).catch(async function () { await MeetDialog.alert('Could not save branding.'); });
             });
 
