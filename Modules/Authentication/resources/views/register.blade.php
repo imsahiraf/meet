@@ -42,7 +42,7 @@
         </button>
     </form>
 
-    <x-auth.insights-button label="Quick sign up with Meet Insights" />
+    <x-auth.insights-button label="Quick sign up with Insights by Meet" />
 
     <p class="mt-6 text-center text-sm text-gray-500">
         Already have an account?

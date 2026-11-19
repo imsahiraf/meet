@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-/** Settings > Meet Insights: link this Meet account to an Insights login (merge), or remove the link. */
+/** Settings > Insights by Meet: link this Meet account to an Insights login (merge), or remove the link. */
 class InsightsLinkController extends Controller
 {
     public function show()

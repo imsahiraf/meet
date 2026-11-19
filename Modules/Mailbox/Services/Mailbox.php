@@ -146,7 +146,7 @@ class Mailbox
     public static function send(MailAccount $account, array $to, array $cc, array $bcc, string $subject, string $html, array $attachments = [], ?MailMessage $replyTo = null, bool $receipt = false): MailMessage
     {
         if ($account->kind === 'insights') {
-            return InsightsMail::send($account, $to, $cc, $bcc, $subject, $html, $attachments); // company mailbox: sent by Meet Insights
+            return InsightsMail::send($account, $to, $cc, $bcc, $subject, $html, $attachments); // company mailbox: sent by Insights by Meet
         }
         $settings = MailSetting::for($account->user_id);
         $email = (new Email())
@@ -210,7 +210,7 @@ class Mailbox
 
     /**
      * Read receipts (MDN) and delivery failures (DSN) that come back: noted on the sent message ("Read by ... at ...",
-     * "Not delivered: ..."). The report itself still arrives in the Inbox like any mail. Same as Meet Insights Mail Hub.
+     * "Not delivered: ..."). The report itself still arrives in the Inbox like any mail. Same as Insights by Meet Mail Hub.
      */
     public static function noteReport(MailAccount $account, string $raw, array $h): void
     {

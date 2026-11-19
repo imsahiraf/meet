@@ -28,9 +28,13 @@ class SecurityHeaders
         // real requests the Firebase Web SDK makes itself when
         // obtaining a push token (resources/js/push-notifications.js),
         // not requests this app's own code initiates.
+        // the Meet help chat (owner 2026-11-19: on every product) loads from Insights and asks it: its origin is allowed for the
+        // script and the requests, nothing else
+        $u = parse_url((string) config('services.insights.url', 'https://github.com/imsahiraf/meet'));
+        $ins = isset($u['scheme'], $u['host']) && in_array($u['scheme'], ['https', 'http'], true) ? ' ' . $u['scheme'] . '://' . $u['host'] . (isset($u['port']) ? ':' . $u['port'] : '') : '';
         $response->headers->set(
             'Content-Security-Policy',
-            "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://firebaseinstallations.googleapis.com https://fcmregistrations.googleapis.com; frame-ancestors 'self';",
+            "default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval'{$ins}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; media-src 'self' blob:; connect-src 'self' https://firebaseinstallations.googleapis.com https://fcmregistrations.googleapis.com{$ins}; frame-ancestors 'self';",
         );
 
         if ($request->secure()) {

@@ -16,7 +16,7 @@ use Modules\Mailbox\Services\DriveArchive;
 use Modules\Mailbox\Services\Mailbox;
 
 /**
- * Meet Insights reads and sends the person's Meet address (name.user@example.com) in its Mail Hub, and (owner 2026-11-11: the same
+ * Insights by Meet reads and sends the person's Meet address (name.user@example.com) in its Mail Hub, and (owner 2026-11-11: the same
  * mail in both places) the accounts the person added here (IMAP, Gmail). Accounts that came from Insights (kind "insights") are not
  * offered back. Calls without "account" mean the Meet address (older Insights versions).
  * Every call carries "Authorization: Bearer <token>" signed by Insights with the shared INSIGHTS_SSO_SECRET

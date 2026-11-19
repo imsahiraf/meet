@@ -11,11 +11,11 @@ use Modules\Mailbox\Models\MailMessage;
 use RuntimeException;
 
 /**
- * Company mailboxes (the organization's own domain, kept in Meet Insights Mail Hub) shown in Meet as accounts of
+ * Company mailboxes (the organization's own domain, kept in Insights by Meet Mail Hub) shown in Meet as accounts of
  * kind "insights": new mail comes in through Insights' mail API (hourly with the other accounts, and on "Sync now"),
  * and mail written here is sent by Insights from that address. The opposite of Insights' MeetMail.
  * Every call carries a short signed token: {iss: "meet", aud: "insights", sub: <Insights login>, scope: "mail"}, signed
- * with the shared INSIGHTS_SSO_SECRET. The Insights login is the linked one (Settings > Meet Insights) or the Meet e-mail.
+ * with the shared INSIGHTS_SSO_SECRET. The Insights login is the linked one (Settings > Insights by Meet) or the Meet e-mail.
  */
 class InsightsMail
 {
@@ -41,18 +41,18 @@ class InsightsMail
     private static function call(User $user, string $method, string $path, array $data = []): array
     {
         if (!self::configured()) {
-            throw new RuntimeException(__('Meet Insights is not connected on this server.'));
+            throw new RuntimeException(__('Insights by Meet is not connected on this server.'));
         }
         $url = rtrim((string) config('services.insights.url'), '/') . '/api/meet/mail/' . ltrim($path, '/');
         $r = Http::withToken(self::token($user))->acceptJson()->timeout(40)->{$method}($url, $data ?: null);
         if ($r->status() === 404) {
-            throw new RuntimeException(__('Meet Insights has no login for :e.', ['e' => self::login($user)]));
+            throw new RuntimeException(__('Insights by Meet has no login for :e.', ['e' => self::login($user)]));
         }
         if ($r->status() === 422) {
-            throw new RuntimeException((string) ($r->json('error') ?: __('Meet Insights did not accept this.')));
+            throw new RuntimeException((string) ($r->json('error') ?: __('Insights by Meet did not accept this.')));
         }
         if (!$r->successful()) {
-            throw new RuntimeException(__('Meet Insights answered :s.', ['s' => $r->status()]));
+            throw new RuntimeException(__('Insights by Meet answered :s.', ['s' => $r->status()]));
         }
 
         return (array) $r->json();

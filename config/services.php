@@ -43,14 +43,14 @@ return [
         'port' => (int) env('CPANEL_PORT', 2083),
     ],
 
-    // Signed entry links from Meet Insights (same secret as Insights > Control center > Integrations > Meet)
+    // Signed entry links from Insights by Meet (same secret as Insights > Control center > Integrations > Meet)
     'insights' => [
         'sso_secret' => env('INSIGHTS_SSO_SECRET', ''),
         'audience' => env('INSIGHTS_SSO_AUDIENCE', 'meet'),
         'url' => env('INSIGHTS_URL', 'https://github.com/imsahiraf/meet'),
     ],
 
-    // Pass for the free Meet tools served by Meet Insights (same secret as TOOLS_PASS_SECRET in Insights)
+    // Pass for the free Meet tools served by Insights by Meet (same secret as TOOLS_PASS_SECRET in Insights)
     'tools' => [
         'pass_secret' => env('TOOLS_PASS_SECRET', ''),
         'hosts' => env('TOOLS_PASS_HOSTS', 'example.com,example.net,example.in,example.org,example.biz'),

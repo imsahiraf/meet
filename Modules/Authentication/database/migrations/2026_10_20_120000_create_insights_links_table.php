@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-/* A Meet account linked to a imsahiraf Insights login with another e-mail (the person merged their own Meet account). */
+/* A Meet account linked to a Insights by Meet login with another e-mail (the person merged their own Meet account). */
 return new class extends Migration
 {
     public function up(): void

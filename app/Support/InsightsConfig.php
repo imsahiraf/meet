@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Http;
 
 /**
- * Settings the super admin of Meet Insights keeps in one place (domains, mail domain, brand): pulled signed with the
+ * Settings the super admin of Insights by Meet keeps in one place (domains, mail domain, brand): pulled signed with the
  * shared secret (INSIGHTS_SSO_SECRET), cached for an hour, applied on boot. Without the secret nothing changes.
  */
 class InsightsConfig

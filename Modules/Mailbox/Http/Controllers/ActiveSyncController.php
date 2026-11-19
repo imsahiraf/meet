@@ -141,7 +141,7 @@ class ActiveSyncController extends Controller
         return [$user, $account && (int) $account->user_id === (int) $user->id ? $account : null, $password];
     }
 
-    /** In Meet every active account has its mail (ported from Meet Insights 2026-11-10, where it follows the organization's plan). */
+    /** In Meet every active account has its mail (ported from Insights by Meet 2026-11-10, where it follows the organization's plan). */
     private function entitled(User $user): bool
     {
         return ($user->status ?? 'active') === 'active'; // Meet keeps the account state in "status"

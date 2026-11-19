@@ -96,7 +96,7 @@ class CpanelMail
             if (str_contains($now, basename($script))) {
                 return ['status' => 'ok', 'message' => "Catch-all of $domain already goes to Meet."];
             }
-            // ONE pipe for all Meet mail (owner 2026-11-14): Meet Insights' router meet-mail-pipe.php hands <name>.user@ mail
+            // ONE pipe for all Meet mail (owner 2026-11-14): Insights by Meet' router meet-mail-pipe.php hands <name>.user@ mail
             // to Meet (this pipe script) and the rest to Insights Mail Hub - Meet never takes the catch-all away from it
             if (str_contains($now, 'meet-mail-pipe.php')) {
                 return ['status' => 'ok', 'message' => "Catch-all of $domain goes to the Meet mail router, which hands Meet its mail."];

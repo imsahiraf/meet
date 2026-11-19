@@ -4,7 +4,7 @@ namespace Modules\Mailbox\Services;
 
 /**
  * Small, defensive RFC 5322 / MIME parser (pure PHP, no mailparse/imap extension needed on cPanel).
- * Limits: 12 levels of nesting, 60 parts. Same parser as Meet Insights (Modules/Platform/Support/MimeParser). Content is only decoded, never executed or rendered here.
+ * Limits: 12 levels of nesting, 60 parts. Same parser as Insights by Meet (Modules/Platform/Support/MimeParser). Content is only decoded, never executed or rendered here.
  */
 class MimeParser
 {

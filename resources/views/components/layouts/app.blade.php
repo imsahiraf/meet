@@ -2844,5 +2844,7 @@
         });
     })();
     </script>
+{{-- Meet help chat: answers only from our own guides and prices (served by Insights) --}}
+<script src="{{ rtrim((string) config('services.insights.url'), '/') }}/zx/helpbot.js" data-product="meet" data-side="left" data-bottom="90" defer></script>
 </body>
 </html>

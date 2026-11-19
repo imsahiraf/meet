@@ -13,7 +13,7 @@
                         <div class="min-w-0">
                             <div class="break-all font-medium text-gray-900">{{ $a->email }} @if ($a->is_default)<span class="rounded bg-brand-50 px-2 text-xs text-brand-700">{{ __('default') }}</span>@endif</div>
                             <div class="text-xs text-gray-500">
-                                {{ $a->kind === 'local' ? __('Meet address') : ($a->kind === 'google' ? __('Gmail (Google connected)') : ($a->kind === 'insights' ? __('Company mailbox (Meet Insights)') : ($presets[$a->provider]['label'] ?? 'IMAP'))) }}
+                                {{ $a->kind === 'local' ? __('Meet address') : ($a->kind === 'google' ? __('Gmail (Google connected)') : ($a->kind === 'insights' ? __('Company mailbox (Insights by Meet)') : ($presets[$a->provider]['label'] ?? 'IMAP'))) }}
                                 @if ($a->last_sync_at) · {{ __('synced :t', ['t' => $a->last_sync_at->diffForHumans()]) }}@endif
                                 @if ($a->last_error)<span class="text-red-600"> · {{ $a->last_error }}</span>@endif
                             </div>
@@ -32,7 +32,7 @@
                     <form method="POST" action="{{ route('mail.settings.insights') }}" class="mt-5 rounded-xl bg-gray-50 p-4">
                         @csrf
                         <h3 class="text-sm font-semibold text-gray-900">{{ __('Company mailboxes') }}</h3>
-                        <p class="text-xs text-gray-500">{{ __('Read and answer the mailboxes your organization gave you in Meet Insights (your company domain) here in Meet. Login used: :e', ['e' => $insightsLogin]) }}</p>
+                        <p class="text-xs text-gray-500">{{ __('Read and answer the mailboxes your organization gave you in Insights by Meet (your company domain) here in Meet. Login used: :e', ['e' => $insightsLogin]) }}</p>
                         @error('insights')<p class="mt-2 text-xs text-red-600">{{ $message }}</p>@enderror
                         <button class="mt-3 rounded-lg bg-brand-600 px-4 py-2 text-sm font-medium text-white hover:bg-brand-700">{{ $accounts->where('kind', 'insights')->count() ? __('Check for new company mailboxes') : __('Add my company mailboxes') }}</button>
                     </form>
@@ -71,7 +71,7 @@
                             <p class="font-medium">{{ __('How to fix it (once):') }}</p>
                             <ol class="mt-1 list-decimal space-y-1 pl-5">
                                 <li>{{ __('cPanel > Security > Manage API Tokens > Create: name it "meet", no expiry. Copy the token.') }}</li>
-                                <li>{{ __('Put it in Meet\'s .env as CPANEL_API_TOKEN, and the cPanel user name as CPANEL_USER (in Meet Insights: Control center > Environment > Meet).') }}</li>
+                                <li>{{ __('Put it in Meet\'s .env as CPANEL_API_TOKEN, and the cPanel user name as CPANEL_USER (in Insights by Meet: Control center > Environment > Meet).') }}</li>
                                 <li>{{ __('Press "Set it now" below. The line above turns green.') }}</li>
                             </ol>
                             <p class="mt-2">{{ __('Without a token: cPanel > Email > Default Address > domain :d > Advanced Options > Pipe to a Program, and type exactly:', ['d' => $domain]) }}
@@ -83,7 +83,7 @@
                 </div>
             @endif
 
-            {{-- phone mail apps (Gmail, Outlook, iPhone Mail) over Exchange ActiveSync: one app password per phone (ported from Meet Insights 2026-11-10) --}}
+            {{-- phone mail apps (Gmail, Outlook, iPhone Mail) over Exchange ActiveSync: one app password per phone (ported from Insights by Meet 2026-11-10) --}}
             <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm" id="phones">
                 <h2 class="text-lg font-semibold text-gray-900">{{ __('Mail on your phone') }}</h2>
                 <p class="mt-1 text-sm text-gray-600">{{ __('Add your Meet address to Gmail, Outlook or iPhone Mail as an "Exchange" account: e-mail = your address, server = :h, password = an app password made here (one per phone, never your Meet password).', ['h' => request()->getHost()]) }}</p>

@@ -118,7 +118,7 @@ return new class extends Migration
             $t->string('vacation_subject', 190)->nullable();
             $t->text('vacation_body')->nullable();
             $t->date('vacation_until')->nullable();
-            $t->unsignedInteger('quota_mb')->nullable(); // from the imsahiraf Insights package; null = free size
+            $t->unsignedInteger('quota_mb')->nullable(); // from the Insights by Meet package; null = free size
             $t->string('plan', 60)->nullable();
             $t->string('google_email', 190)->nullable();
             $t->text('google_token')->nullable(); // encrypted json: access_token, refresh_token, expires_at

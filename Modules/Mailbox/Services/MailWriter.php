@@ -8,7 +8,7 @@ use Anthropic\Core\Exceptions\APIStatusException;
 use RuntimeException;
 
 /**
- * "Help me write" in the compose window (Meet Insights Mail Hub parity, 2026-11-11): fix spelling, make the text polite, shorter or
+ * "Help me write" in the compose window (Insights by Meet Mail Hub parity, 2026-11-11): fix spelling, make the text polite, shorter or
  * formal. Uses the same AI key and client as the meeting notes (MEET_AI_KEY). Only the person's own new text is changed; a quoted
  * earlier message stays exactly as it was.
  */

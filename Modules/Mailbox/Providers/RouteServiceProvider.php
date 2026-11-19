@@ -11,7 +11,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         Route::middleware('web')->group(module_path('Mailbox', '/routes/web.php'));
         Route::middleware('api')->group(module_path('Mailbox', '/routes/api.php'));
-        // phone mail apps (Exchange ActiveSync, ported from Meet Insights 2026-11-10): no web session, no CSRF - Basic auth with an app password
+        // phone mail apps (Exchange ActiveSync, ported from Insights by Meet 2026-11-10): no web session, no CSRF - Basic auth with an app password
         Route::middleware(['throttle:300,1'])->group(function () {
             $c = \Modules\Mailbox\Http\Controllers\ActiveSyncController::class;
             Route::match(['OPTIONS'], 'Microsoft-Server-ActiveSync', [$c, 'options']);

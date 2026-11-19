@@ -71,7 +71,7 @@ class InsightsCompanyMailboxTest extends TestCase
         Mailbox::send($acc, ['ravi@example.com'], [], [], 'Re: Order 12', '<p>Shipped.</p>');
         $this->assertSame([7, ['ravi@example.com']], [$sent[0]['account'], $sent[0]['to']]);
         $this->assertSame(1, MailMessage::where('account_id', $acc->id)->where('folder', 'sent')->count());
-        $this->actingAs($u)->get('/mail/settings')->assertSee('Company mailbox (Meet Insights)');
+        $this->actingAs($u)->get('/mail/settings')->assertSee('Company mailbox (Insights by Meet)');
     }
 
     public function test_hidden_without_insights_and_clear_message_without_mailboxes(): void

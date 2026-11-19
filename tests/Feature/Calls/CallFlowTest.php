@@ -84,6 +84,7 @@ class CallFlowTest extends TestCase
 
     public function test_ending_an_accepted_call_records_duration_and_history(): void
     {
+        $this->freezeSecond(); // the clock must not move by itself between accept and end (the duration was 46 on a slow run)
         $a = $this->activeUser();
         $b = $this->activeUser();
         $callId = $this->actingAs($a, 'sanctum')

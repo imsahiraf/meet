@@ -11,7 +11,7 @@ use Modules\Mailbox\Services\DriveArchive;
 use Modules\Mailbox\Services\GoogleApi;
 use Modules\Mailbox\Services\ImapSync;
 
-/** Hourly: new mail of external accounts (IMAP, Gmail, company mailboxes in Meet Insights), Google Drive move of older own mail, Google contacts. */
+/** Hourly: new mail of external accounts (IMAP, Gmail, company mailboxes in Insights by Meet), Google Drive move of older own mail, Google contacts. */
 class SyncMailJob implements ShouldQueue
 {
     use Dispatchable, Queueable;

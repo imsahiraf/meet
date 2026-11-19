@@ -40,10 +40,10 @@ Route::middleware('guest')->group(function () {
     });
 });
 
-// Signed one-time entry link from Meet Insights (works whether or not someone is signed in here)
+// Signed one-time entry link from Insights by Meet (works whether or not someone is signed in here)
 Route::get('sso/insights', [InsightsSsoController::class, 'enter'])->middleware('throttle:30,1,auth-web')->name('sso.insights');
 
-// Free Meet tools on Meet Insights: sign up / log in here, go back with a signed pass (see ToolsPassController)
+// Free Meet tools on Insights by Meet: sign up / log in here, go back with a signed pass (see ToolsPassController)
 Route::middleware(['auth', 'throttle:30,1,auth-web'])->get('tools/pass', ToolsPassController::class)->name('tools.pass');
 
 Route::middleware('auth')->post('logout', [WebAuthController::class, 'logout'])->name('logout');

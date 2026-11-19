@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        \App\Support\InsightsConfig::apply(); // settings kept by the Meet Insights super admin
+        \App\Support\InsightsConfig::apply(); // settings kept by the Insights by Meet super admin
         // Super Admins (DDS-6 admins.is_super_admin) bypass all permission checks.
         Gate::before(function (User $user, string $ability) {
             return $user->admin?->is_super_admin ? true : null;

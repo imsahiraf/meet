@@ -10,7 +10,7 @@ use Modules\Mailbox\Models\MailAppPassword;
 use Modules\Mailbox\Services\Mailbox;
 use Tests\TestCase;
 
-/** Phone mail apps over Exchange ActiveSync in Meet (ported from Meet Insights 2026-11-10): this test plays the phone. */
+/** Phone mail apps over Exchange ActiveSync in Meet (ported from Insights by Meet 2026-11-10): this test plays the phone. */
 class ActiveSyncTest extends TestCase
 {
     use RefreshDatabase;

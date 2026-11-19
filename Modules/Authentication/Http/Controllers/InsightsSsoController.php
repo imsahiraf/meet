@@ -15,7 +15,7 @@ use Modules\Authentication\Models\User;
 use Modules\Authentication\Services\AuthenticationService;
 
 /**
- * Entry from Meet Insights (its "Open Meet" link): /sso/insights?token=...&next=/path
+ * Entry from Insights by Meet (its "Open Meet" link): /sso/insights?token=...&next=/path
  * Token contract (Insights docs/platform/09-integrations.md): base64url(payload) "." base64url(HMAC-SHA256(base64url(payload), secret)),
  * payload {iss:"insights", aud, sub:<email>, iat, exp, jti}. Only an EXISTING, verified, active Meet account with that
  * e-mail is signed in - nothing is created, no Meet data goes back to Insights, and Meet's own 2FA still applies.
@@ -34,7 +34,7 @@ class InsightsSsoController extends Controller
             || ! Cache::add('insights-sso-jti:' . $payload['jti'], 1, now()->addMinutes(15))) { // every token works once
             Log::warning('Insights SSO rejected', ['ip' => $request->ip()]);
 
-            return redirect()->route('login')->withErrors(['login' => 'This sign-in link is invalid or expired. Open Meet from Meet Insights again, or sign in here.']);
+            return redirect()->route('login')->withErrors(['login' => 'This sign-in link is invalid or expired. Open Meet from Insights by Meet again, or sign in here.']);
         }
         $next = (string) $request->query('next', '/');
         $next = str_starts_with($next, '/') && ! str_starts_with($next, '//') && ! str_contains($next, '\\') ? $next : '/';

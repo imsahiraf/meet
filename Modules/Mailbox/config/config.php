@@ -13,7 +13,7 @@ return [
     'local_suffix' => env('MEET_MAIL_SUFFIX', '.user'),
 
     // Storage of the own mailbox (messages + attachments). Free users: 30 MB. Connecting Google moves older mail to the
-    // user's Google Drive, so the mailbox keeps working past the free size. Meet Insights users get the size of their
+    // user's Google Drive, so the mailbox keeps working past the free size. Insights by Meet users get the size of their
     // package (sent by Insights in the sign-in token, claim "mail_mb").
     'free_quota_mb' => (int) env('MEET_MAIL_FREE_MB', 30),
     'archive_after_days' => (int) env('MEET_MAIL_ARCHIVE_DAYS', 30),

@@ -1,5 +1,5 @@
 @php
-    // festive offer set in Meet Insights (Control center > Offers); cached 10 minutes, nothing shown when Insights cannot be reached
+    // festive offer set in Insights by Meet (Control center > Offers); cached 10 minutes, nothing shown when Insights cannot be reached
     $offer = \Illuminate\Support\Facades\Cache::remember('insights-offer-meet', 600, function () {
         try {
             return \Illuminate\Support\Facades\Http::timeout(3)->acceptJson()->get(rtrim((string) config('services.insights.url'), '/').'/api/public/offer', ['product' => 'meet'])->json('offer');
